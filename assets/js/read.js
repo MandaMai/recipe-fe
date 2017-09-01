@@ -12,7 +12,7 @@
  * 2. Include the following DataTables JavaScript in layout.ejs
  *    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/datatables.min.js"></script>
  *
- * 3. Using the DataTables plugin render the table on the page as a DataTable
+ * 3. Using the DataTables plugin render the table on the page as a DataTablex
  *
  * 4. Use the buttons extention to enable the copy, csv, excel, pdf, and print
  *
@@ -33,7 +33,23 @@
  (function(){
 
    $(function(){
+    //add datatables
+    $(document).ready(function(){
+      $('#studentTable').DataTable( {
+        fixedHeader: true,
+        responsive: true,
+        scrollY:        200,
+        deferRender:    true,
+        scroller:       true,
+        colReorder: true,
+        dom: 'Bfrtip',
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+  });
 
+ 
    	//code goes here
 
    })

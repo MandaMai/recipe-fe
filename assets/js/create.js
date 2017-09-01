@@ -27,8 +27,55 @@
 (function(){
 
   $(function(){
-
-  	//code goes here
+    
+  	$("#addStudentForm").validate({
+      errorClass: 'text-danger',
+      rules: {
+        first_name: {
+          required: true,
+          minlength: 2
+        },
+        last_name: {
+          required: true,
+          minlength: 2
+        }, 
+        start_date: {
+          required: true,
+          dateISO: true
+        }, 
+        gpa: {
+          required: true,
+          maxlength: 3, 
+          number: true, 
+          range: [0.0, 4.0]
+        }, 
+        sat: {
+          required: true,
+          maxlength: 4, 
+          digits: true, 
+          range: [0, 1600]
+        }
+      },
+      messages: {
+        first_name: {
+          minlength: "At least 2 characters required!"
+        }, 
+        last_name: {
+          
+          minlength: ("At least 2 characters required!")
+        }, 
+        start_date: {
+          
+          dateISO: ("Must by in yyyy-mm-dd format")
+        }, 
+        gpa: {
+          required: "must be a decimal number between 0.0-4.0"
+        },
+        sat: {
+          required: "must be a number between 0-1600"
+        }
+      }
+    });
 
   })
 

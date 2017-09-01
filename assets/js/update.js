@@ -41,11 +41,96 @@
  */
 
  (function(){
-
+  $("#updateStudentForm :input").prop("disabled", true);
+  let apiUrl = "http://localhost:1337/student/"
+  let selected;
    $(function(){
+    $("#updateStudentForm").validate({
+      errorClass: 'text-danger',
+      rules: {
+        first_name: {
+          required: true,
+          minlength: 2
+        },
+        last_name: {
+          required: true,
+          minlength: 2
+        }, 
+        start_date: {
+          required: true,
+          dateISO: true
+        }, 
+        gpa: {
+          required: true,
+          maxlength: 3, 
+          number: true, 
+          range: [0.0, 4.0]
+        }, 
+        sat: {
+          required: true,
+          maxlength: 4, 
+          digits: true, 
+          range: [0, 1600]
+        }
+      },
+      messages: {
+        first_name: {
+          minlength: "At least 2 characters required!"
+        }, 
+        last_name: {
+          
+          minlength: ("At least 2 characters required!")
+        }, 
+        start_date: {
+          
+          dateISO: ("Must by in yyyy-mm-dd format")
+        }, 
+        gpa: {
+          required: "must be a decimal number between 0.0-4.0"
+        },
+        sat: {
+          required: "must be a number between 0-1600"
+        }
+      }
+    });
 
-    //code goes here
+      $('#student_id').on('change', function(){
+        selected = $(this).find("option:selected").val();
+        $.get(apiUrl+selected, function(data){
+          //alert(data.student_id)
+            //$('tbody').append('<tr class="questRow"><td class="name">'+questName+'</td><td class="image">'+questImg+'</td><td><button type="button" class="remove btn btn-default" data-id="'+questID+'" data-target="'+questName+'">Remove</button></td><td><button type="button" class="edit btn btn-default" data-id="'+questID+'" data-target="'+questName+'">Edit</button></td></tr>');
+            $.each(data, function(key, val){
+              let el=$('[name="'+key+'"]');
+              let type = el.attr('type');
+              el.val(val);
+            })//end each    
+        })//end get
+        $("#updateStudentForm :input").prop("disabled", false);
+      })//end on change
 
+
+
+
+  $('#updateStudentForm').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: apiUrl + selected,
+      data: $("#updateStudentForm").serialize(),
+      method: "PUT",
+      success: function(data){
+
+        //reload student table on success
+        alert("Student was updated!")
+
+        //disable form fields again
+        $("#updateStudentForm :input").prop("disabled", true);
+
+        //reset form back to empty fields
+        $("#updateStudentForm")[0].reset()
+         }//end success
+        })//end ajax
+    $("#updateStudentForm :input").prop("disabled", false);
+  })//end on change
    })
 
  })();
