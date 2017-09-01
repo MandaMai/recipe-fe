@@ -112,23 +112,23 @@
 
 
   $('#updateStudentForm').on('submit', function(e){
-    e.preventDefault();
-    $.ajax({
-      url: apiUrl + selected,
-      data: $("#updateStudentForm").serialize(),
-      method: "PUT",
-      success: function(data){
+    // e.preventDefault();
+    // $.ajax({
+    //   url: apiUrl + selected,
+    //   data: $("#updateStudentForm").serialize(),
+    //   method: "PUT",
+    //   success: function(data){
 
-        //reload student table on success
-        alert("Student was updated!")
+    //     //reload student table on success
+    //     alert("Student was updated!")
 
-        //disable form fields again
-        $("#updateStudentForm :input").prop("disabled", true);
+    //     //disable form fields again
+    //     $("#updateStudentForm :input").prop("disabled", true);
 
-        //reset form back to empty fields
-        $("#updateStudentForm")[0].reset()
-         }//end success
-        })//end ajax
+    //     //reset form back to empty fields
+    //     $("#updateStudentForm")[0].reset()
+    //      }//end success
+    //     })//end ajax
     $("#updateStudentForm :input").prop("disabled", false);
   })//end on change
    })
