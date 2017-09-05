@@ -1,6 +1,8 @@
 body {
-    padding-top: 70px;
+    padding-top: 180px;
 }
+
+
 /* Customize container */
 @media (min-width: 600px) {
     .container {
