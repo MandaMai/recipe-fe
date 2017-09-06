@@ -15,7 +15,6 @@
       <th>Recipe Name</th>
       <th>Description</th>
       <th>Preparation Time</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -27,13 +26,13 @@
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.last_name %></td>
-        <td><button class="btn-delete">Delete Recipe</button></td>
       </tr>
     <% }) %>
   <% } %>
   </tbody>
+</table>
 
-  <div id="my-modal" class="modal fade" tabindex="-1" role="dialog">
+<div id="my-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -51,17 +50,12 @@
               <h4>30 Minutes</h4>
           </div>
           <div class="recipeDetail">
-            <h3 class="modal-ingredients">Ingredients</h3>
-            <p>Ingredient1<button>Remove Ingredient</button></p>
-            <p>Ingredient2<button>Remove Ingredient</button></p>
-            <h3 class="modal-instruction">Instruction</h3>
-            <p>1. Instruction 1<button>Remove Instruction</button></p>
-            <p>2. Instruction 2<button>Remove Instruction</button></p>
-          </div>
-          <div class="model-buttons">
-            <button>print buttons here</button>
-            <button>Add Ingredients</button>
-            <button>Add Instruction</button>
+            <h3 class="modal-ingredients">Ingredients<button class="btnAddIng">Add</button></h3>
+            <p>Ingredient1<button>Remove</button></p>
+            <p>Ingredient2<button>Remove</button></p>
+            <h3 class="modal-instruction">Instruction<button class="btnAddIns">Add</button></h3>
+            <p>1. Instruction 1<button>Remove</button></p>
+            <p>2. Instruction 2<button>Remove</button></p>
           </div>
           
         </div>
@@ -71,4 +65,76 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-</table>
+
+  <div id="my-modal-ing" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="modalTitle">Add Ingredient</h2>
+          </div>
+          <div class="modal-body">
+              <form action="/create_ingredient" method="POST" class="form-horizontal" id="addIngredient">
+                <div class="form-group">
+                  <label for="title" class="col-sm-2 control-label">Ingredient Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ingredientName" name="ingredientName" placeholder="e.g. Chocolate Chips" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Ingredient Quanitity</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ingredientQuantity" name="ingredientQuantity"  placeholder="e.g. 5 or 1/4" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="minutes" class="col-sm-2 control-label">Unit of Measure</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="measureUnit" name="measureUnit" placeholder="e.g. cups or slices or handfulls" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Add Ingredient to Recipe</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="my-modal-ins" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="modalTitle">Add Instruction</h2>
+            </div>
+            <div class="modal-body">
+                <form action="/create_instruction" method="POST" class="form-horizontal" id="addInstruction">
+                  <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Step Number</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="stepNumber" name="stepNumber" placeholder="e.g. 4 or leave blank to put at the end of the existing list" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Instruction Information</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="instructionText" name="instructionTexxt"  placeholder="e.g. Pour chocolate chips into dough mixture, fold in angrily" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Add Instruction to Recipe</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+
