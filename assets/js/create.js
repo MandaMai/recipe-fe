@@ -28,51 +28,31 @@
 
   $(function(){
     
-  	$("#addStudentForm").validate({
+  	$("#addRecipe").validate({
       errorClass: 'text-danger',
       rules: {
-        first_name: {
+        title: {
           required: true,
           minlength: 2
         },
-        last_name: {
+        description: {
           required: true,
           minlength: 2
         }, 
-        start_date: {
+        minutes: {
           required: true,
-          dateISO: true
-        }, 
-        gpa: {
-          required: true,
-          maxlength: 3, 
-          number: true, 
-          range: [0.0, 4.0]
-        }, 
-        sat: {
-          required: true,
-          maxlength: 4, 
-          digits: true, 
-          range: [0, 1600]
+          minlength: 1
         }
       },
       messages: {
-        first_name: {
+        title: {
           minlength: "At least 2 characters required!"
         }, 
-        last_name: {
-          
+        description: {
           minlength: ("At least 2 characters required!")
         }, 
-        start_date: {
-          
-          dateISO: ("Must by in yyyy-mm-dd format")
-        }, 
-        gpa: {
-          required: "must be a decimal number between 0.0-4.0"
-        },
-        sat: {
-          required: "must be a number between 0-1600"
+        minutes: {
+          minlength: ("At least 1 character required! How long will it take to make this item?")
         }
       }
     });
