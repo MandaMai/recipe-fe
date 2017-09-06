@@ -7,7 +7,7 @@
 
 var Client = require('node-rest-client').Client;
 var client = new Client();
-var endpoint = "http://localhost:1337/student"
+var endpoint = "https://arcane-harbor-36178.herokuapp.com/api/recipes"
 
 module.exports = {
 
@@ -54,9 +54,10 @@ module.exports = {
   read: function (req, res) {
 
     client.get(endpoint, function (data, response) {
-        return res.view('read', {students: data});
+        sails.log(JSON.stringify(data, null, 2))
+        return res.view('read', {recipes: data});
     }).on('error', function (err) {
-        return res.view('read', {error: { message: "There was an error getting the students"}});
+        return res.view('read', {error: { message: "There was an error getting the recipes"}});
     });
 
   },
@@ -70,9 +71,9 @@ module.exports = {
     if(req.method != "POST"){
 
       client.get(endpoint, function (data, response) {
-        return res.view('update', {students: data});
+        return res.view('update', {recipes: data});
       }).on('error', function (err) {
-          return res.view('update', {error: { message: "There was an error getting the students"}});
+          return res.view('update', {error: { message: "There was an error getting the recipes"}});
       });
 
     }else{
@@ -82,7 +83,7 @@ module.exports = {
           headers: { "Content-Type": "application/json" }
       };
 
-      client.put(endpoint + "/" + req.body.student_id, args, function (data, response) {
+      client.put(endpoint + "/" + req.body.id, args, function (data, response) {
 
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
@@ -105,14 +106,14 @@ module.exports = {
     if(req.method != "POST"){
 
       client.get(endpoint, function (data, response) {
-        return res.view('delete', {students: data});
+        return res.view('delete', {recipes: data});
       }).on('error', function (err) {
           return res.view('delete', {error: { message: "There was an error getting the students"}});
       });
 
     }else{
 
-      client.delete(endpoint + "/" + req.body.student_id, function (data, response) {
+      client.delete(endpoint + "/" + req.body.id, function (data, response) {
 
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);

@@ -7,7 +7,7 @@
 <%- partial ('partials/statusmessage.ejs') %>
 
 <h2>Recipes</h2>
-<table class="table table-striped table-bordered" id="studentTable" style="width:100%">
+<table class="table table-striped table-bordered" id="recipeTable" style="width:100%">
   <thead>
     <tr>
       <th>Preview</th>
@@ -18,14 +18,14 @@
     </tr>
   </thead>
   <tbody>
-  <% if(typeof students != "undefined" && students.length > 0){ %>
-    <% students.forEach(function(student){ %>
+  <% if(typeof recipes != "undefined" && recipes.length > 0){ %>
+    <% recipes.forEach(function(recipe){ %>
       <tr>
-        <td><img class="thumbnail" src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449"><a href="http://www.google.com" class="btnDetails">Click for Details</a></td>
-        <td><%= student.student_id %></td>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.last_name %></td>
+        <td><img class="thumbnail" src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449"><button class="btnDetails">Click for Details</button></td>
+        <td><%= recipe.id %></td>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.description %></td>
+        <td><%= recipe.minutes %></td>
       </tr>
     <% }) %>
   <% } %>
@@ -51,11 +51,11 @@
           </div>
           <div class="recipeDetail">
             <h3 class="modal-ingredients">Ingredients<button class="btnAddIng">Add</button></h3>
-            <p>Ingredient1<button>Remove</button></p>
-            <p>Ingredient2<button>Remove</button></p>
+            <p>Ingredient1<button class="btnEditIng">Edit</button><button class="btnRemIng">Remove</button></p>
+            <p>Ingredient2<button class="btnEditIng">Edit</button><button class="btnRemIng">Remove</button></p>
             <h3 class="modal-instruction">Instruction<button class="btnAddIns">Add</button></h3>
-            <p>1. Instruction 1<button>Remove</button></p>
-            <p>2. Instruction 2<button>Remove</button></p>
+            <p>1. Instruction 1<button class="btnEditIns">Edit</button><button class="btnRemIns">Remove</button></p>
+            <p>1. Instruction 2<button class="btnEditIns">Edit</button><button class="btnRemIns">Remove</button></p>
           </div>
           
         </div>
