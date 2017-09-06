@@ -105,7 +105,7 @@ module.exports = {
   delete: function (req, res) {
 
     if(req.method != "POST"){
-      sails.log(JSON.stringify(data, null, 2))
+      
       client.get(endpoint, function (data, response) {
         return res.view('delete', {recipes: data});
       }).on('error', function (err) {
