@@ -49,6 +49,19 @@
     } );
   });
 
+  $(document).on('click', ".btnAddIng", function() {
+    //addIngredient modal
+    $('#my-modal-ing').modal({
+      show: 'true'
+  });
+  })
+
+  $(document).on('click', ".btnAddIns", function() {
+    //addInstruction modal
+    $('#my-modal-ins').modal({
+      show: 'true'
+  });
+  })
  
   $(document).on('click', '.btnDetails' , function(e) {
     e.preventDefault()

@@ -39,6 +39,14 @@ module.exports = {
 
   },
 
+  create_instruction: function(req, res) {
+
+  },//end create_instruction
+
+  create_ingredient: function(req, res) {
+
+  },
+
 
   /**
    * `StudentController.read()`
