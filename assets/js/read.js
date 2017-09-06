@@ -35,7 +35,7 @@
    $(function(){
     //add datatables
     $(document).ready(function(){
-      $('#studentTable').DataTable( {
+      $('#recipeTable').DataTable( {
         fixedHeader: true,
         responsive: true,
         scrollY:        200,
