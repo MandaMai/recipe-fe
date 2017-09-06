@@ -1,16 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Roboto|Roboto+Condensed');
+
 body {
     padding-top: 180px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
-
-
+.navbar-brand {
+    margin-top: -15px;
+}
+.navbar {
+    font-family: 'Bangers', sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+}
+.thumbnail {
+    width: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+td a {
+    text-align: center;
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top: -20px;
+}
+th {
+    text-align: center;
+}
 /* Customize container */
 @media (min-width: 600px) {
     .container {
-        max-width: 768px;
+        max-width: 800px;
     }
 }
 /* Customize container */
-@media (min-width: 800px) {
+@media (min-width: 946px) {
     .container-fluid {
         max-width: 1024px;
     }

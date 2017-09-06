@@ -10,18 +10,20 @@
 <table class="table table-striped table-bordered" id="studentTable" style="width:100%">
   <thead>
     <tr>
+      <th>Preview</th>
       <th>ID</th>
       <th>Recipe Name</th>
       <th>Description</th>
       <th>Preparation Time</th>
-      <th>Details</th>
-      <th>Delete</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
   <% if(typeof students != "undefined" && students.length > 0){ %>
     <% students.forEach(function(student){ %>
       <tr>
+        <td><img class="thumbnail" src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449"><a href="http://www.google.com">Details</a></td>
         <td><%= student.student_id %></td>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
