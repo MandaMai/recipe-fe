@@ -16,22 +16,59 @@
       <th>Description</th>
       <th>Preparation Time</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
   <% if(typeof students != "undefined" && students.length > 0){ %>
     <% students.forEach(function(student){ %>
       <tr>
-        <td><img class="thumbnail" src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449"><a href="http://www.google.com">Details</a></td>
+        <td><img class="thumbnail" src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449"><a href="http://www.google.com" class="btnDetails">Click for Details</a></td>
         <td><%= student.student_id %></td>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.last_name %></td>
-        <td><button>Details</button></td>
-        <td><button>Delete Recipe</button></td>
+        <td><button class="btn-delete">Delete Recipe</button></td>
       </tr>
     <% }) %>
   <% } %>
   </tbody>
+
+  <div id="my-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" id="modalTitle">Recipe Name Here</h2>
+        </div>
+        <div class="modal-body">
+          <img src="https://cdn.shopify.com/s/files/1/0267/4223/products/hangry-hulk-t-shirt-teeturtle-marvel_800x.jpg?v=1475788449" id="modal-image" alt="" data-toggle="modal">
+          <div class="modal-desc">
+              <h3 >Description</h3>
+              <p>Description Text Here</p>
+            </div>
+          <div class="modal-prepTime">
+              <h3>Preparation Time</h3>
+              <h4>30 Minutes</h4>
+          </div>
+          <div class="recipeDetail">
+            <h3 class="modal-ingredients">Ingredients</h3>
+            <p>Ingredient1<button>Remove Ingredient</button></p>
+            <p>Ingredient2<button>Remove Ingredient</button></p>
+            <h3 class="modal-instruction">Instruction</h3>
+            <p>1. Instruction 1<button>Remove Instruction</button></p>
+            <p>2. Instruction 2<button>Remove Instruction</button></p>
+          </div>
+          <div class="model-buttons">
+            <button>print buttons here</button>
+            <button>Add Ingredients</button>
+            <button>Add Instruction</button>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close to Continue</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </table>
