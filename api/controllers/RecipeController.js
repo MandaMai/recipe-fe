@@ -26,8 +26,9 @@ module.exports = {
         };
 
         client.post(endpoint, args, function (data, response) {
+          sails.log(JSON.stringify(data, null, 2))
             // return res.view('create', {success: { message: "Record added successfully"}});
-            if(response.statusCode != "201"){
+            if(response.statusCode != "200"){
                 req.addFlash("error", data.message.substring(data.message.indexOf("•")));
                 return res.redirect('/create');
             }
@@ -104,7 +105,7 @@ module.exports = {
   delete: function (req, res) {
 
     if(req.method != "POST"){
-
+      sails.log(JSON.stringify(data, null, 2))
       client.get(endpoint, function (data, response) {
         return res.view('delete', {recipes: data});
       }).on('error', function (err) {

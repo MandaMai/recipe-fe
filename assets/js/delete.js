@@ -31,15 +31,15 @@
 
    $(function(){
 
-    $('#student_id').selectpicker({
+    $('#id').selectpicker({
       style: 'btn-info',
       size: 4, 
       liveSearch: true, 
       showTick: true, 
       tickIcon: "glyphicon-fire",
-      header: "Current Students", 
+      header: "Current Recipes", 
       liveSearchStyle: "contains",
-      title: "Select Student"
+      title: "Select Recipe"
     });
 
    })
