@@ -50,7 +50,39 @@
   });
 
  
-   	//code goes here
+  $(document).on('click', '.btnDetails' , function(e) {
+    e.preventDefault()
+    // let characterName = $(this).attr("data-target");
+    //   charID = $(this).attr("data-id");
+    //   //get event desc
+    //   tempEventUrl="http://gateway.marvel.com/v1/public/characters/"+charID+"/events?"+ apiKey
+    //   characterImage = $(this).attr("data-img");
+
+    //   $.get(tempEventUrl, function(data) {
+    //             let events = data.data.results;
+    //             let eventCount=(events.length);
+    //             if(eventCount>=5){
+    //                       $('.modal-body').html("");
+    //                       for(let i = 0; i < 5; i++){
+    //                               $('#modalTitle').html(characterName);
+    //                               $('.modal-body').append('<h3 class="eventName">'+events[i].title+'</h3><h4 class="eventDesc">'+events[i].description+'</h4><p class="heroes">Number of Characters in Event: '+events[i].characters.available+'</p><p class="returned">Characters that Survived Event: '+events[i].characters.returned+'</p>');
+    //                       }//end for loop
+    //                       $('.modal-content').css('background-image', 'url('+characterImage+')');
+    //             }else{
+    //                       $('.modal-body').html("");
+    //                       $('#modalTitle').html(characterName);
+    //                       $('.modal-body').html('<h2 class="eventName">There are no events for this character</h2>');
+    //                       console.log(characterImage);
+    //                       $('.modal-content').css('background-image', 'url('+characterImage+')');
+    //                       //$('body').css('background-image', 'url(../images/backgrounds/header-top.jpg)');
+    //             }
+                $('#my-modal').modal({
+                    show: 'true'
+                });
+      })
+
+
+
 
    })
 

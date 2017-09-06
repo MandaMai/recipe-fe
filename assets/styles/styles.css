@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Roboto|Roboto+Condensed');
 
 body {
-    padding-top: 180px;
+    padding-top: 195px;
     font-family: 'Roboto Condensed', sans-serif;
 }
 .navbar-brand {
@@ -26,6 +26,23 @@ td a {
 }
 th {
     text-align: center;
+}
+
+h2 {
+    border-top: solid #101010 4px;
+}
+
+.modal-body img {
+    width: 570px;
+    
+}
+
+.modal-title {
+    border-top: none;
+}
+
+button {
+    margin-left: 10px;
 }
 /* Customize container */
 @media (min-width: 600px) {
