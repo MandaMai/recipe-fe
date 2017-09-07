@@ -73,7 +73,28 @@ module.exports = {
   },//end create_instruction
 
   create_ingredient: function(req, res) {
+    if(req.method != "POST"){
+      return res.view('create');
+    }
 
+    var args = {
+        data: req.body,
+        headers: { "Content-Type": "application/json" }
+    };
+    //change endpoint to right url
+    sails.log(endpoint+"/"+req.body.recipe_id+"/ingredients")
+    client.post(endpoint+"/"+req.body.recipe_id+"/ingredients", args, function (data, response) {
+      sails.log(JSON.stringify(data, null, 2))
+        // return res.view('create', {success: { message: "Record added successfully"}});
+        if(response.statusCode != "200"){
+            req.addFlash("error", data.message.substring(data.message.indexOf("•")));
+            return res.redirect('/create');
+        }
+
+        req.addFlash("success", "Record created successfully");
+        return res.redirect('/create');
+
+    })
   },
 
   delete_ingredient: function(req, res) {
