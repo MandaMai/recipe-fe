@@ -43,33 +43,27 @@ module.exports = {
 
   create_instruction: function(req, res) {
     if(req.method != "POST"){
-      
-            client.get(endpoint, function (data, response) {
-              return res.view('update', {recipes: data});
-            }).on('error', function (err) {
-                return res.view('update', {error: { message: "There was an error getting the recipes"}});
-            });
-      
-          }else{
-      
-            var args = {
-                data: req.body,
-                headers: { "Content-Type": "application/json" }
-            };
-      
-            client.put(endpoint + "/" + req.body.id, args, function (data, response) {
-      
-              if(response.statusCode != "200"){
-                  req.addFlash("error", data.message);
-                  return res.redirect('/update');
-              }
-      
-              req.addFlash("success", "Record updated successfully");
-              return res.redirect('/update');
-      
-            })
-      
-          }
+      return res.view('create');
+    }
+
+    var args = {
+        data: req.body,
+        headers: { "Content-Type": "application/json" }
+    };
+    //change endpoint to right url
+    sails.log(endpoint+"/"+req.body.recipe_id+"/instructions")
+    client.post(endpoint+"/"+req.body.recipe_id+"/instructions", args, function (data, response) {
+      sails.log(JSON.stringify(data, null, 2))
+        // return res.view('create', {success: { message: "Record added successfully"}});
+        if(response.statusCode != "200"){
+            req.addFlash("error", data.message.substring(data.message.indexOf("•")));
+            return res.redirect('/create');
+        }
+
+        req.addFlash("success", "Record created successfully");
+        return res.redirect('/');
+
+    })
   },//end create_instruction
 
   create_ingredient: function(req, res) {
@@ -92,7 +86,7 @@ module.exports = {
         }
 
         req.addFlash("success", "Record created successfully");
-        return res.redirect('/create');
+        return res.redirect('/');
 
     })
   },
