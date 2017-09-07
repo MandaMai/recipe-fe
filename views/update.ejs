@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
-    <li class="active">Edit Student</a></li>
+    <li class="active">Edit Recipe</a></li>
 </ol>
 
 <br/>
@@ -8,12 +8,12 @@
 
 <form action="#" method="">
   <div class="form-group">
-    <label for="student_id">SELECT AN STUDENT TO UPDATE</label><br/>
-    <select id="student_id" name="student_id">
-    <% if(typeof students != "undefined" && students.length > 0){ %>
-      <% students.forEach(function(student){ %>
-        <option value="<%= student.student_id %>">
-          <%= student.last_name + ", " +  student.first_name %>
+    <label for="id">SELECT A RECIPE TO UPDATE</label><br/>
+    <select id="id" name="id">
+    <% if(typeof recipes != "undefined" && recipes.length > 0){ %>
+      <% recipes.forEach(function(recipe){ %>
+        <option value="<%= recipe.id %>">
+          <%= recipe.title %>
         </option>
       <% }) %>
     <% } %>
@@ -22,8 +22,8 @@
 </form>
 
 <h2>Update Recipe</h2>
-<form action="/update" method="POST" class="form-horizontal" id="updateStudentForm">
-  <input type="hidden" name="student_id" id="student_id" value="">
+<form action="/update" method="POST" class="form-horizontal" id="updateRecipe">
+  <input type="hidden" name="id" id="id" value="">
   
   <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Recipe Name</label>

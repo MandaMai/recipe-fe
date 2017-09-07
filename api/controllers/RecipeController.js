@@ -8,6 +8,7 @@
 var Client = require('node-rest-client').Client;
 var client = new Client();
 var endpoint = "https://arcane-harbor-36178.herokuapp.com/api/recipes"
+const prettyPrint = obj => sails.log(JSON.stringify(obj, null, 2))
 
 module.exports = {
 
@@ -41,13 +42,47 @@ module.exports = {
   },
 
   create_instruction: function(req, res) {
-
+    if(req.method != "POST"){
+      
+            client.get(endpoint, function (data, response) {
+              return res.view('update', {recipes: data});
+            }).on('error', function (err) {
+                return res.view('update', {error: { message: "There was an error getting the recipes"}});
+            });
+      
+          }else{
+      
+            var args = {
+                data: req.body,
+                headers: { "Content-Type": "application/json" }
+            };
+      
+            client.put(endpoint + "/" + req.body.id, args, function (data, response) {
+      
+              if(response.statusCode != "200"){
+                  req.addFlash("error", data.message);
+                  return res.redirect('/update');
+              }
+      
+              req.addFlash("success", "Record updated successfully");
+              return res.redirect('/update');
+      
+            })
+      
+          }
   },//end create_instruction
 
   create_ingredient: function(req, res) {
 
   },
 
+  delete_ingredient: function(req, res) {
+    
+  },
+
+  delete_instruction: function(req, res) {
+    
+  },
 
   /**
    * `StudentController.read()`
@@ -63,18 +98,32 @@ module.exports = {
 
   },
 
+  read_item: function (req, res) {
+    prettyPrint(req.params.id)
+    tempID = req.params.id;
+    client.get(endpoint+"/"+tempID, function (data, response) {
+        prettyPrint(data)
+        return res.send(data);
+    }).on('error', function (err) {
+        return res.send({error: { message: "There was an error getting the recipes"}});
+    });
+    
+  },
 
    /**
-   * `StudentController.update()`
+   * `RecipeController.update()`
    */
   update: function (req, res) {
+
+    sails.log(req)
+    sails.log("helloooooooooo")
 
     if(req.method != "POST"){
 
       client.get(endpoint, function (data, response) {
         return res.view('update', {recipes: data});
       }).on('error', function (err) {
-          return res.view('update', {error: { message: "There was an error getting the recipes"}});
+        return res.view('update', {error: { message: "There was an error getting the recipes"}});
       });
 
     }else{
