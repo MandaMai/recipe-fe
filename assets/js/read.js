@@ -33,15 +33,30 @@
     } );
   });
 
+  //getting add form - ingredients
+  $('#addIngredient').on('submit', function(){
+    
+        alert("item submitted")
+      })//end on change
+
   $(document).on('click', ".btnAddIng", function() {
     //addIngredient modal
+    selected = $(this).attr("data-recipe_id");
+    document.getElementById("form_recipe_id").setAttribute("value", selected);
+    alert("Recipe to add it to: " + selected);
     $('#my-modal-ing').modal({
       show: 'true'
   });
   })
+  //submitting the add form - ingredients
 
+
+  //getting add form - instructions
   $(document).on('click', ".btnAddIns", function() {
     //addInstruction modal
+    selected = $(this).attr("data-recipe_id");
+    alert("Recipe to add it to: " + selected);
+
     $('#my-modal-ins').modal({
       show: 'true'
   });
@@ -50,18 +65,39 @@
   $(document).on('click', '.btnDetails' , function(e) {
     e.preventDefault()
     selected = $(this).attr("data-id");
-      alert(selected);
+      // alert(selected);
       $.get(apiUrl + selected, function(data){
         $("#modalTitle").html(data.title)
         $("#descText").html(data.description)
         $("#minutesText").html(data.minutes)
+
+        //add recipe id to elements in modal
+        $('#btnIng').attr('data-recipe_id', data.id);
+        $('#btnIns').attr('data-recipe_id', data.id);
+        $('.instructionList').attr('data-recipe_id', data.id);
+        $('.ingredientList').attr('data-recipe_id', data.id);
+
+        
+        //Get list of Instructions
         for(let i =0; i < data.instructions.length; i++){
           //append table with data
-          sails.log(data.instructions[i].instructionText)
+          // alert(data.instructions[i].id)
+          $('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-id="'+data.instructions[i].id +'">Delete</button></td></tr>');
+        }
+         //Get list of Ingredients
+         for(let i =0; i < data.ingredients.length; i++){
+          //append table with data
+          //alert(data.ingredients[i].id)
+          $('#ingredientData').append('<tr><td><p class="ingredientList">'+data.ingredients[i].ingredientQuantity+" "+data.ingredients[i].measureUnit+" "+data.ingredients[i].ingredientName+'</p></td><td><button class="btnEditIng" data-id="'+data.ingredients[i].id +'">Edit</button></td><td><button class="btnDeleteIng" data-id="'+data.instructions[i].id +'">Delete</button></td></tr>');
         }
       })//end get
-      
-    
+
+       //add recipe id to elements in modal
+       $('#btnIng').attr('data-recipe_id', selected);
+       $('#btnIns').attr('data-recipe_id', selected);
+       $('.instructionList').attr('data-recipe_id', selected);
+       $('.ingredientList').attr('data-recipe_id', selected);
+
 
     //return item info based off of what button was selected
     $('#my-modal').modal({
