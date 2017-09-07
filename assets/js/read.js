@@ -42,25 +42,32 @@
   $(document).on('click', ".btnAddIng", function() {
     //addIngredient modal
     selected = $(this).attr("data-recipe_id");
-    document.getElementById("form_recipe_id").setAttribute("value", selected);
+    document.getElementById("recipe_id").setAttribute("value", selected);
     alert("Recipe to add it to: " + selected);
     $('#my-modal-ing').modal({
       show: 'true'
   });
   })
-  //submitting the add form - ingredients
-
-
-  //getting add form - instructions
   $(document).on('click', ".btnAddIns", function() {
-    //addInstruction modal
+    //addIngredient modal
     selected = $(this).attr("data-recipe_id");
+    document.getElementById("ins_recipe_id").setAttribute("value", selected);
     alert("Recipe to add it to: " + selected);
-
     $('#my-modal-ins').modal({
       show: 'true'
   });
   })
+
+  // //getting add form - instructions
+  // $(document).on('click', ".btnAddIns", function() {
+  //   //addInstruction modal
+  //   selected = $(this).attr("data-recipe_id");
+  //   alert("Recipe to add it to: " + selected);
+
+  //   $('#my-modal-ins').modal({
+  //     show: 'true'
+  // });
+  // })
  
   $(document).on('click', '.btnDetails' , function(e) {
     e.preventDefault()
@@ -77,7 +84,8 @@
         $('.instructionList').attr('data-recipe_id', data.id);
         $('.ingredientList').attr('data-recipe_id', data.id);
 
-        
+        console.log(data.instructions)
+        console.log(data.ingredients)
         //Get list of Instructions
         for(let i =0; i < data.instructions.length; i++){
           //append table with data
@@ -88,7 +96,7 @@
          for(let i =0; i < data.ingredients.length; i++){
           //append table with data
           //alert(data.ingredients[i].id)
-          $('#ingredientData').append('<tr><td><p class="ingredientList">'+data.ingredients[i].ingredientQuantity+" "+data.ingredients[i].measureUnit+" "+data.ingredients[i].ingredientName+'</p></td><td><button class="btnEditIng" data-id="'+data.ingredients[i].id +'">Edit</button></td><td><button class="btnDeleteIng" data-id="'+data.instructions[i].id +'">Delete</button></td></tr>');
+          $('#ingredientData').append('<tr><td><p class="ingredientList">'+data.ingredients[i].ingredientQuantity+" "+data.ingredients[i].measureUnit+" "+data.ingredients[i].ingredientName+'</p></td><td><button class="btnEditIng" data-id="'+data.ingredients[i].id +'">Edit</button></td><td><button class="btnDeleteIng" data-id="'+data.ingredients[i].id +'">Delete</button></td></tr>');
         }
       })//end get
 
