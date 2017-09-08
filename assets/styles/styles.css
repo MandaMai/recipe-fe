@@ -53,6 +53,9 @@ button {
 .modal-buttons {
     margin-top: 30px;
 }
+
+
+
 /* Customize container */
 @media (min-width: 600px) {
     .container {

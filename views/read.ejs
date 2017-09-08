@@ -97,9 +97,9 @@
           <div class="modal-body">
               <form action="/create_ingredient" method="POST" class="form-horizontal" id="addIngredient">
                 <div class="form-group">
-                    <label for="recipe_id" class="col-sm-2 control-label">Recipe ID</label>
+                    <label for="recipe_id" class="col-sm-2 control-label idField">Recipe ID</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="recipe_id" name="recipe_id" placeholder="e.g. ID of parent item" hidden>
+                      <input type="text" class="form-control idField" id="recipe_id" name="recipe_id" placeholder="e.g. ID of parent item" readonly>
                     </div>
                   </div>
                   <div class="form-group">
@@ -141,9 +141,9 @@
             <div class="modal-body">
                 <form action="/create_instruction" method="POST" class="form-horizontal" id="addInstruction">
                   <div class="form-group">
-                      <label for="recipe_id" class="col-sm-2 control-label">Recipe ID</label>
+                      <label for="recipe_id" class="col-sm-2 control-label idField">Recipe ID</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="ins_recipe_id" name="recipe_id" placeholder="e.g. ID of parent item" hidden>
+                        <input type="text" class="form-control idField" id="ins_recipe_id" name="recipe_id" placeholder="e.g. ID of parent item" readonly>
                       </div>
                     </div>
                   <div class="form-group">
@@ -169,6 +169,7 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
 
+
       <div id="my-modal-delIng" class="modal fade" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -180,15 +181,15 @@
                   <form action="/delete_ingredient" method="POST" class="form-horizontal" id="delIngredient">
                   <h3>Are you sure you want to delete the following ingredient?</h3>
                   <div class="form-group">
-                      <label for="recipe_id" class="col-sm-2 control-label">Recipe ID</label>
+                      <label for="recipe_id" class="col-sm-2 control-label idField">Recipe ID</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="delIng_recipe_id" name="recipe_id" placeholder="e.g. ID of item" hidden>
+                        <input type="text" class="form-control idField" id="delIng_recipe_id" name="recipe_id" placeholder="e.g. ID of item" readonly>
                       </div>
                     </div>
                     <div class="form-group">
-                        <label for="item_id" class="col-sm-2 control-label">Item ID</label>
+                        <label for="item_id" class="col-sm-2 control-label idField">Item ID</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="delIng_item_id" name="item_id" placeholder="e.g. ID of item" hidden>
+                          <input type="text" class="form-control idField" id="delIng_item_id" name="item_id" placeholder="e.g. ID of item" readonly>
                         </div>
                       </div>
                   <p>If you have changed your mind, click the X in the top right to cancel</p>
@@ -205,6 +206,7 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+
         <div id="my-modal-delIns" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -218,13 +220,13 @@
                     <div class="form-group">
                         <label for="recipe_id" class="col-sm-2 control-label">Recipe ID</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="delIns_recipe_id" name="recipe_id" placeholder="e.g. ID of parent" hidden>
+                          <input type="text" class="form-control" id="delIns_recipe_id" name="recipe_id" placeholder="e.g. ID of parent" readonly>
                         </div>
                       </div>
                       <div class="form-group">
-                          <label for="item_id" class="col-sm-2 control-label">Item ID</label>
+                          <label for="item_id" class="col-sm-2 control-label idField">Item ID</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="delIns_item_id" name="item_id" placeholder="e.g. ID of item" hidden>
+                            <input type="text" class="form-control idField" id="delIns_item_id" name="item_id" placeholder="e.g. ID of item" readonly>
                           </div>
                         </div>
                     <p>If you have changed your mind, click the X in the top right to cancel</p>
@@ -242,3 +244,113 @@
           </div><!-- /.modal -->
 
 
+          <div id="my-modal-editIng" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h2 class="modal-title" id="modalTitle">Edit this Ingredient</h2>
+                  </div>
+                  <div class="modal-body">
+                      <form action="/edit_ingredient" method="POST" class="form-horizontal" id="editIngredient">
+                      <div class="form-group">
+                          <label for="recipe_id" class="col-sm-2 control-label idField">Recipe ID</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control idField" id="editIng_recipe_id" name="recipe_id" placeholder="e.g. ID of item" readonly>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="item_id" class="col-sm-2 control-label idField">Item ID</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control idField" id="editIng_item_id" name="item_id" placeholder="e.g. ID of item" readonly>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="item_index" class="col-sm-2 control-label idField">Item Index</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control idField" id="editIng_item_index" name="item_index" placeholder="e.g. Index of item" readonly>
+                              </div>
+                            </div>
+                          <div class="form-group">
+                              <label for="title" class="col-sm-2 control-label">Ingredient Name</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ingredientName" name="ingredientName" placeholder="e.g. Chocolate Chips" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="description" class="col-sm-2 control-label">Ingredient Quanitity</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ingredientQuantity" name="ingredientQuantity"  placeholder="e.g. 5 or 1/4" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="minutes" class="col-sm-2 control-label">Unit of Measure</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="measureUnit" name="measureUnit" placeholder="e.g. cups or slices or handfulls" required>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit Changes</button>
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+    
+
+            <div id="my-modal-editIns" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title" id="modalTitle">Edit this Instruction</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/edit_instruction" method="POST" class="form-horizontal" id="editInstruction">
+                        <div class="form-group">
+                            <label for="recipe_id" class="col-sm-2 control-label">Recipe ID</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="editIns_recipe_id" name="recipe_id" placeholder="e.g. ID of parent" readonly>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="item_id" class="col-sm-2 control-label idField">Item ID</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control idField" id="editIns_item_id" name="item_id" placeholder="e.g. ID of item" readonly>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="item_index" class="col-sm-2 control-label idField">Item Index</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control idField" id="editIns_item_index" name="item_index" placeholder="e.g. Index of item" readonly>
+                                </div>
+                              </div>
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">Step Number</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="stepNumber" name="stepNumber" placeholder="e.g. 4 or leave blank to put at the end of the existing list">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="description" class="col-sm-2 control-label">Instruction Information</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="instructionText" name="instructionText"  placeholder="e.g. Pour chocolate chips into dough mixture, fold in angrily" required>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default">Submit Changes</button>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
+          
