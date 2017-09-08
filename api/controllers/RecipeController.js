@@ -155,7 +155,7 @@ module.exports = {
   },
 
   delete_ingredient: function(req, res) {
-    sails.log(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id)
+    console.log(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id)
     //prettyPrint(req);
     var args = {
       data: req.body,
@@ -168,7 +168,7 @@ module.exports = {
           return res.view('delete', {error: { message: "There was an error getting the students"}});
       });
     }else{
-      sails.log("made it here")
+      console.log("made it here")
       client.delete(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, function (data, response) {
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
@@ -183,7 +183,7 @@ module.exports = {
   },//end delete_ingredient
 
   delete_instruction: function(req, res) {
-    sails.log(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id)
+    console.log(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id)
     //prettyPrint(req);
     var args = {
       data: req.body,
@@ -196,7 +196,7 @@ module.exports = {
           return res.view('delete', {error: { message: "There was an error getting the students"}});
       });
     }else{
-      sails.log("made it here")
+      console.log("made it here")
       client.delete(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id, function (data, response) {
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);

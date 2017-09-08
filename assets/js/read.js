@@ -95,13 +95,13 @@
           //append table with data
           //alert("Instruction ID: " + data.instructions[i].id + "and Parent ID: " + data.id)
           //$('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
-          $('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
+          $('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'" data-index="'+i+'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
         }
          //Get list of Ingredients
          for(let i =0; i < data.ingredients.length; i++){
           //append table with data
           //alert("Ingredient ID: " + data.ingredients[i].id + "and Parent ID: " + data.id)
-          $('#ingredientData').append('<tr><td><p class="ingredientList">'+data.ingredients[i].ingredientQuantity+" "+data.ingredients[i].measureUnit+" "+data.ingredients[i].ingredientName+'</p></td><td><button class="btnEditIng" data-recipe_id="'+data.id +'" data-item_id="'+data.ingredients[i].id +'">Edit</button></td><td><button class="btnDeleteIng" data-recipe_id="'+data.id +'" data-item_id="'+data.ingredients[i].id +'">Delete</button></td></tr>');
+          $('#ingredientData').append('<tr><td><p class="ingredientList">'+data.ingredients[i].ingredientQuantity+" "+data.ingredients[i].measureUnit+" "+data.ingredients[i].ingredientName+'</p></td><td><button class="btnEditIng" data-recipe_id="'+data.id +'" data-item_id="'+data.ingredients[i].id +'" data-index="'+i+'">Edit</button></td><td><button class="btnDeleteIng" data-recipe_id="'+data.id +'" data-item_id="'+data.ingredients[i].id +'">Delete</button></td></tr>');
         }
       })//end get
 
@@ -138,6 +138,36 @@
         show: 'true'
       }); 
     })
+
+    $(document).on('click', '.btnEditIng', function() {
+      selected = $(this).attr("data-recipe_id");
+      itemSelected = $(this).attr("data-item_id");
+      tempIndex = $(this).attr("data-item_index");
+      alert(selected, itemSelected, tempIndex)
+      document.getElementById('editIng_recipe_id').setAttribute("value", selected);
+      document.getElementById('editIng_item_id').setAttribute("value", $(this).attr("data-item_id"));
+      document.getElementById('editIng_item_index').setAttribute("value", $(this).attr("data-item_index"))
+      alert(apiUrl + selected)
+      $.get(apiUrl + selected, function(data){
+        $("#ingredientName").html(data.ingredients[tempIndex].ingredientName)
+        $("#ingredientQuantity").html(data.ingredients[tempIndex].ingredientQuantity)
+        $("#measureUnit").html(data.ingredients[tempIndex].measureUnit)   
+      })//end get
+
+      $("#my-modal-editIng").modal({
+        show: 'true'
+      }); 
+    })
+
+    $(document).on('click', '.btnEditIns', function() {
+      selected = $(this).attr("data-recipe_id");
+      document.getElementById('editIns_recipe_id').setAttribute("value", selected);
+      document.getElementById('editIns_item_id').setAttribute("value", $(this).attr("data-item_id"));
+      $("#my-modal-editIns").modal({
+        show: 'true'
+      }); 
+    })
+
 
 
    })
