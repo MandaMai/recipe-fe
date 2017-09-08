@@ -86,7 +86,7 @@
         $('#btnIns').attr('data-recipe_id', data.id);
         $('.instructionList').attr('data-recipe_id', data.id);
         $('.ingredientList').attr('data-recipe_id', data.id);
-        // $("#modal-image").attr('src', data.pictureURL) 
+        $("#modal-image").attr('src', data.pictureURL) 
 
         console.log(data.instructions)
         console.log(data.ingredients)
