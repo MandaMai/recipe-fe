@@ -185,10 +185,6 @@ module.exports = {
   delete_instruction: function(req, res) {
     console.log(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id)
     //prettyPrint(req);
-    var args = {
-      data: req.body,
-      headers: { "Content-Type": "application/json" }
-  };
     if(req.method != "POST"){
       client.get(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id, function (data, response) {
         return res.view('delete', {recipes: data});
@@ -206,6 +202,45 @@ module.exports = {
         return res.redirect('/');
       })
     }
+  },
+
+  edit_ingredient: function(req, res) {
+    //alert(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id)
+    if(req.method != "POST"){
+      client.get(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, function (data, response) {
+        return res.view('update', {recipes: data});
+      }).on('error', function (err) {
+        return res.view('update', {error: { message: "There was an error getting the recipes"}});
+      });
+    }else{
+      var args = {
+        data: req.body,
+        headers: { "Content-Type": "application/json" }
+    };
+      
+      const obj = {
+            ingredientName: req.body.ingredientName,
+            ingredientQuantity: req.body.ingredientQuantity,
+            measureUnit: req.body.measureUnit
+      }
+      //prettyPrint(obj)
+      prettyPrint(req.body)
+      prettyPrint(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id)
+      client.put(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, args, function (data, response) {
+      //client.put(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, obj, function (data, response) {
+        if(response.statusCode != "200"){
+            req.addFlash("error", data.message);
+            return res.redirect('/');
+        }
+        req.addFlash("success", "Record updated successfully");
+        return res.redirect('/');
+      })
+    }
+  },
+
+  edit_instruction: function(req, res) {
+
   }
+
 
 };
