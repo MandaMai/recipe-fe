@@ -93,7 +93,7 @@
         //Get list of Instructions
         for(let i =0; i < data.instructions.length; i++){
           //append table with data
-          alert("Instruction ID: " + data.instructions[i].id + "and Parent ID: " + data.id)
+          //alert("Instruction ID: " + data.instructions[i].id + "and Parent ID: " + data.id)
           //$('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
           $('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
         }
