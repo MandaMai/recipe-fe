@@ -52,7 +52,7 @@
   $(document).on('click', ".btnAddIns", function() {
     //addIngredient modal
     selected = $(this).attr("data-recipe_id");
-    document.getElementById("recipe_id").setAttribute("value", selected);
+    document.getElementById("ins_recipe_id").setAttribute("value", selected);
     //alert("Recipe to add it to: " + selected);
     $('#my-modal-ins').modal({
       show: 'true'
