@@ -16,16 +16,13 @@ module.exports = {
    * `StudentController.create()`
    */
   create: function (req, res) {
-
         if(req.method != "POST"){
           return res.view('create');
         }
-
         var args = {
             data: req.body,
             headers: { "Content-Type": "application/json" }
         };
-
         client.post(endpoint, args, function (data, response) {
           sails.log(JSON.stringify(data, null, 2))
             // return res.view('create', {success: { message: "Record added successfully"}});
@@ -33,19 +30,15 @@ module.exports = {
                 req.addFlash("error", data.message.substring(data.message.indexOf("•")));
                 return res.redirect('/create');
             }
-
             req.addFlash("success", "Record created successfully");
             return res.redirect('/create');
-
         })
-
   },
 
   create_instruction: function(req, res) {
     if(req.method != "POST"){
       return res.view('create');
     }
-
     var args = {
         data: req.body,
         headers: { "Content-Type": "application/json" }
@@ -59,10 +52,8 @@ module.exports = {
             req.addFlash("error", data.message.substring(data.message.indexOf("•")));
             return res.redirect('/create');
         }
-
         req.addFlash("success", "Record created successfully");
         return res.redirect('/');
-
     })
   },//end create_instruction
 
@@ -70,7 +61,6 @@ module.exports = {
     if(req.method != "POST"){
       return res.view('create');
     }
-
     var args = {
         data: req.body,
         headers: { "Content-Type": "application/json" }
@@ -84,19 +74,9 @@ module.exports = {
             req.addFlash("error", data.message.substring(data.message.indexOf("•")));
             return res.redirect('/create');
         }
-
         req.addFlash("success", "Record created successfully");
         return res.redirect('/');
-
     })
-  },
-
-  delete_ingredient: function(req, res) {
-    
-  },
-
-  delete_instruction: function(req, res) {
-    
   },
 
   /**
@@ -122,44 +102,33 @@ module.exports = {
     }).on('error', function (err) {
         return res.send({error: { message: "There was an error getting the recipes"}});
     });
-    
   },
 
    /**
    * `RecipeController.update()`
    */
   update: function (req, res) {
-
-    sails.log(req)
-    sails.log("helloooooooooo")
-
+    //sails.log(req)
+    //sails.log("helloooooooooo")
     if(req.method != "POST"){
-
       client.get(endpoint, function (data, response) {
         return res.view('update', {recipes: data});
       }).on('error', function (err) {
         return res.view('update', {error: { message: "There was an error getting the recipes"}});
       });
-
     }else{
-
       var args = {
           data: req.body,
           headers: { "Content-Type": "application/json" }
       };
-
       client.put(endpoint + "/" + req.body.id, args, function (data, response) {
-
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
             return res.redirect('/update');
         }
-
         req.addFlash("success", "Record updated successfully");
         return res.redirect('/update');
-
       })
-
     }
   },
 
@@ -167,30 +136,76 @@ module.exports = {
    * `StudentController.delete()`
    */
   delete: function (req, res) {
-
     if(req.method != "POST"){
-      
       client.get(endpoint, function (data, response) {
         return res.view('delete', {recipes: data});
       }).on('error', function (err) {
           return res.view('delete', {error: { message: "There was an error getting the students"}});
       });
-
     }else{
-
       client.delete(endpoint + "/" + req.body.id, function (data, response) {
-
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
             return res.redirect('/delete');
         }
-
         req.addFlash("success", "Record deleted successfully");
-        return res.redirect('/delete');
+        return res.redirect('/');
+      })
+    }
+  },
 
+  delete_ingredient: function(req, res) {
+    sails.log(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id)
+    //prettyPrint(req);
+    var args = {
+      data: req.body,
+      headers: { "Content-Type": "application/json" }
+  };
+    if(req.method != "POST"){
+      client.get(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, function (data, response) {
+        return res.view('delete', {recipes: data});
+      }).on('error', function (err) {
+          return res.view('delete', {error: { message: "There was an error getting the students"}});
+      });
+    }else{
+      sails.log("made it here")
+      client.delete(endpoint+"/"+req.body.recipe_id+"/ingredients/"+req.body.item_id, function (data, response) {
+        if(response.statusCode != "200"){
+            req.addFlash("error", data.message);
+            return res.redirect('/delete');
+        }
+        req.addFlash("success", "Record deleted successfully");
+        return res.redirect('/');
       })
     }
 
+
+  },//end delete_ingredient
+
+  delete_instruction: function(req, res) {
+    sails.log(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id)
+    //prettyPrint(req);
+    var args = {
+      data: req.body,
+      headers: { "Content-Type": "application/json" }
+  };
+    if(req.method != "POST"){
+      client.get(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id, function (data, response) {
+        return res.view('delete', {recipes: data});
+      }).on('error', function (err) {
+          return res.view('delete', {error: { message: "There was an error getting the students"}});
+      });
+    }else{
+      sails.log("made it here")
+      client.delete(endpoint+"/"+req.body.recipe_id+"/instructions/"+req.body.item_id, function (data, response) {
+        if(response.statusCode != "200"){
+            req.addFlash("error", data.message);
+            return res.redirect('/delete');
+        }
+        req.addFlash("success", "Record deleted successfully");
+        return res.redirect('/');
+      })
+    }
   }
 
 };
