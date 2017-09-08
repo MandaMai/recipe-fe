@@ -87,7 +87,7 @@
         $('.instructionList').attr('data-recipe_id', data.id);
         $('.ingredientList').attr('data-recipe_id', data.id);
         $("#modal-image").attr('src', data.pictureURL) 
-        
+
         //Get list of Instructions
         for(let i =0; i < data.instructions.length; i++){
           //append table with data
@@ -141,7 +141,7 @@
       selected = $(this).attr("data-recipe_id");
       itemSelected = $(this).attr("data-item_id");
       tempIndex = $(this).attr("data-index");
-      alert(selected, itemSelected, tempIndex)
+      alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
       document.getElementById('editIng_recipe_id').setAttribute("value", selected);
       document.getElementById('editIng_item_id').setAttribute("value", $(this).attr("data-item_id"));
       document.getElementById('editIng_item_index').setAttribute("value", $(this).attr("data-index"))
@@ -159,8 +159,17 @@
 
     $(document).on('click', '.btnEditIns', function() {
       selected = $(this).attr("data-recipe_id");
+      itemSelected = $(this).attr("data-item_id");
+      tempIndex = $(this).attr("data-index");
+      alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
       document.getElementById('editIns_recipe_id').setAttribute("value", selected);
       document.getElementById('editIns_item_id').setAttribute("value", $(this).attr("data-item_id"));
+      document.getElementById('editIns_item_index').setAttribute("value", $(this).attr("data-index"))
+      $.get(apiUrl + selected, function(data){
+        document.getElementById('editInstructionText').setAttribute("value", data.instructions[tempIndex].instructionText);
+        document.getElementById('editStepNumber').setAttribute("value", data.instructions[tempIndex].stepNumber);
+      })//end get
+
       $("#my-modal-editIns").modal({
         show: 'true'
       }); 
