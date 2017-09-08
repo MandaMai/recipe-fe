@@ -51,6 +51,8 @@ module.exports.routes = {
   '/create_instruction': 'RecipeController.create_instruction',
   '/delete_ingredient': 'RecipeController.delete_ingredient',
   '/delete_instruction': 'RecipeController.delete_instruction',
+  '/edit_ingredient': 'RecipeController.edit_ingredient',
+  '/edit_instruction': 'RecipeController.edit_instruction',
   '/:id'   :'RecipeController.read_item'
 
 };

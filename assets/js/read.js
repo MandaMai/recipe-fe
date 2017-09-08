@@ -87,13 +87,11 @@
         $('.instructionList').attr('data-recipe_id', data.id);
         $('.ingredientList').attr('data-recipe_id', data.id);
         $("#modal-image").attr('src', data.pictureURL) 
-
-        console.log(data.instructions)
-        console.log(data.ingredients)
+        
         //Get list of Instructions
         for(let i =0; i < data.instructions.length; i++){
           //append table with data
-          //alert("Instruction ID: " + data.instructions[i].id + "and Parent ID: " + data.id)
+          //alert("Instruction ID: " + data.instructions[i].id + "and Parent ID: " + data.id + "index: "+ i)
           //$('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.instructions[i].id +'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
           $('#instructionData').append('<tr><td><p class="instructionList">'+(i+1)+'. '+  data.instructions[i].instructionText+'</td><td></p><button class="btnEditIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'" data-index="'+i+'">Edit</button></td><td><button class="btnDeleteIns" data-recipe_id="'+data.id +'" data-item_id="'+data.instructions[i].id +'">Delete</button></td></tr>');
         }
@@ -142,16 +140,16 @@
     $(document).on('click', '.btnEditIng', function() {
       selected = $(this).attr("data-recipe_id");
       itemSelected = $(this).attr("data-item_id");
-      tempIndex = $(this).attr("data-item_index");
+      tempIndex = $(this).attr("data-index");
       alert(selected, itemSelected, tempIndex)
       document.getElementById('editIng_recipe_id').setAttribute("value", selected);
       document.getElementById('editIng_item_id').setAttribute("value", $(this).attr("data-item_id"));
-      document.getElementById('editIng_item_index').setAttribute("value", $(this).attr("data-item_index"))
-      alert(apiUrl + selected)
+      document.getElementById('editIng_item_index').setAttribute("value", $(this).attr("data-index"))
       $.get(apiUrl + selected, function(data){
-        $("#ingredientName").html(data.ingredients[tempIndex].ingredientName)
-        $("#ingredientQuantity").html(data.ingredients[tempIndex].ingredientQuantity)
-        $("#measureUnit").html(data.ingredients[tempIndex].measureUnit)   
+        document.getElementById('editIngredientName').setAttribute("value", data.ingredients[tempIndex].ingredientName);
+        document.getElementById('editIngredientQuantity').setAttribute("value", data.ingredients[tempIndex].ingredientQuantity);
+        document.getElementById('editMeasureUnit').setAttribute("value", data.ingredients[tempIndex].measureUnit);
+
       })//end get
 
       $("#my-modal-editIng").modal({
