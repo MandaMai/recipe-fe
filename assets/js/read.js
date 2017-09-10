@@ -141,7 +141,7 @@
       selected = $(this).attr("data-recipe_id");
       itemSelected = $(this).attr("data-item_id");
       tempIndex = $(this).attr("data-index");
-      alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
+      //alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
       document.getElementById('editIng_recipe_id').setAttribute("value", selected);
       document.getElementById('editIng_item_id').setAttribute("value", $(this).attr("data-item_id"));
       document.getElementById('editIng_item_index').setAttribute("value", $(this).attr("data-index"))
@@ -161,7 +161,7 @@
       selected = $(this).attr("data-recipe_id");
       itemSelected = $(this).attr("data-item_id");
       tempIndex = $(this).attr("data-index");
-      alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
+      //alert("selected: " + selected + " itemSelected: " +  itemSelected + " index: " + tempIndex)
       document.getElementById('editIns_recipe_id').setAttribute("value", selected);
       document.getElementById('editIns_item_id').setAttribute("value", $(this).attr("data-item_id"));
       document.getElementById('editIns_item_index').setAttribute("value", $(this).attr("data-index"))
