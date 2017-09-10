@@ -124,10 +124,10 @@ module.exports = {
       client.put(endpoint + "/" + req.body.id, args, function (data, response) {
         if(response.statusCode != "200"){
             req.addFlash("error", data.message);
-            return res.redirect('/update');
+            return res.redirect('/');
         }
         req.addFlash("success", "Record updated successfully");
-        return res.redirect('/update');
+        return res.redirect('/');
       })
     }
   },
